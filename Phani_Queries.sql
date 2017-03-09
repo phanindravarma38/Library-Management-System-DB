@@ -1,0 +1,11 @@
+SELECT * FROM Books ORDER BY ISBN;
+SELECT * FROM Members ORDER BY L_Name,F_Name;
+SELECT * FROM Author ORDER BY L_Name,F_Name;
+SELECT * FROM Publisher ORDER BY pub_name;
+SELECT * FROM Phone ORDER BY P_Number;
+SELECT * FROM Written_by; SELECT * FROM Borrowed_By; SELECT * FROM HasRel_AutPhone; SELECT * FROM HasRel_PubPhone;
+SELECT F_Name,L_Name FROM Members where L_Name  like 'B%';
+SELECT Books.* FROM Publisher natural join Books where Pub_name like'Coyote Publishing' ORDER BY title;
+SELECT Members.MemberID, Members.F_Name, Members.L_Name, Books.* FROM Members natural join Books natural join Borrowed_By where Checkin_date is NULL;
+SELECT Author.*, Books.Title FROM Author natural join Written_By natural join Books;
+SELECT b.F_Name, b.L_Name, a.P_Number  FROM (SELECT a.P_Number, a.AuthorID FROM HasRel_AutPhone as a,HasRel_AutPhone as b where a.P_Number = b.P_Number and a.AuthorID<>b.AuthorID) as a natural join Author as b;
